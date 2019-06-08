@@ -2,11 +2,12 @@ import React,{Component} from 'react'
 import CardList from '../components/CardList/CardList'
 import SearchBox from '../components/SearchBox/SearchBox'
 import Scroll from '../components/Scroll/Scroll'
+import ErrorBoundry from '../components/ErrorBoundry/ErrorBoundry'
 import './App.css'
 
 class App extends Component{
     constructor(){
-        super()
+        super();
         this.state={
             robots:[],
             searchField: ''
@@ -36,7 +37,9 @@ class App extends Component{
                 <h1 className="f1 light-green">RobotFriends</h1>     
                 <SearchBox searchChange={this.onSearchChange}/>
                 <Scroll>
-                    <CardList robots={filterRobots}/>
+                    <ErrorBoundry>
+                        <CardList robots={filterRobots}/>
+                    </ErrorBoundry>
                 </Scroll>
             </div>    
          )
